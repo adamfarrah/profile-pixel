@@ -1,11 +1,15 @@
-# Adem Ferrah — Portfolio
+# Adem Ferrah — Portfolio (Onyx)
 
 Personal portfolio of **El Moattassam Billah Adem Ferrah** — Information Network
 Administration & Security.
 
 Zero frameworks, zero build step, zero runtime dependencies. Plain HTML, CSS and
-vanilla JavaScript in a single document. Trilingual (EN / FR / AR) with full RTL
-support.
+vanilla JavaScript in a single document. English only.
+
+Layout and section flow follow the classic developer-portfolio structure
+(hero → about → skills → experience → projects → services → contact), dressed in
+the Onyx identity: deep-green dark theme, pixel-art clover & wordmark, neon
+gradient accents.
 
 ---
 
@@ -14,65 +18,44 @@ support.
 | Path | What it is |
 |---|---|
 | `index.html` | **The source.** Inline CSS + JS, references `assets/`. Edit this. |
-| `assets/` | Background, profile picture, clover and koi images (full + downscaled `_s` variants). |
-| `i18n/dict.py` | **Translation source of truth.** `{ english: (arabic, french) }`. |
-| `i18n/dict.js` | Generated from `dict.py` — the dictionary embedded into the page. |
-| `build.py` | Inlines every asset as Base64 and emits the standalone file. |
-| `Onyx-website.html` | **Deploy-ready single file.** ~560 KB, zero external references. |
+| `assets/` | Background, avatar, clover and koi images (full + downscaled `_s` variants). |
+| `build.py` | Inlines every asset as Base64 and emits the standalone single file. |
+| `Onyx-website.html` | **Deploy-ready single file.** ~0.45 MB, zero external references. |
 | `_headers` | Netlify cache rules (immutable 1-year caching for `/assets/*`). |
-| `site.json` | *(optional, you create it)* Shared links + profile picture, manual publishing. |
-| `supabase-setup.sql` | Run once in Supabase to enable automatic cloud sync. |
 
 ---
 
-## Two ways to deploy
+## Page structure
 
-**A — single file (simplest).**
-Upload `Onyx-website.html` on its own and rename it to `index.html`. Every image
-is embedded as Base64, so nothing can break from a missing file.
-
-**B — the folder (faster for repeat visitors).**
-Deploy the repo root as-is. Images are cached separately for a year via
-`_headers`, so returning visitors only re-download the HTML.
-
-> Option B is measurably faster on repeat visits; option A is immune to broken
-> asset paths. Both are fine.
-
-### GitHub Pages
-Settings → Pages → Source: `main`, folder `/ (root)`.
-Uses `index.html` + `assets/` automatically (option B). `_headers` is ignored by
-GitHub Pages — it only applies on Netlify.
-
-### Netlify
-Drag the folder into Netlify, or connect the repo. No build command, publish
-directory `.`.
+| Section | Content |
+|---|---|
+| Nav | Sticky blurred bar, pixel wordmark brand, pill links with sliding glider + scrollspy, "Hire me" CTA, burger menu on mobile. |
+| Hero | "Hi, my name is" → pixel wordmark, typed rotating role, chips, CTAs, socials; avatar stage with breathing halo, rotating light ring and floating clover. |
+| Marquee | Infinite scrolling strip of discipline keywords. |
+| 01 About | Bio, stats grid (24/7, 7+, 16/20, 100%), ID card with location / degree / focus. |
+| 02 Skills | Tabbed categories (Networking · Security · Systems & Tools · Web & AI), icon cards. |
+| 03 Experience | Tabbed timelines: Work (freelance web, CTE field engineer, inventory manager) and Education (degree, graduation project, continuous learning). |
+| 04 Projects | Featured graduation project with animated 16/20 grade dial and full GNS3 topology diagram, plus three project cards. |
+| 05 Services | Seven service cards + "AI in the workflow" innovation band (six cards). |
+| 07 Contact | Gmail-style compose form (opens the mail app pre-filled), copy-address button, info cards, socials. |
 
 ---
 
 ## Editing
 
-### Content
-All card content lives in JS arrays near the bottom of `index.html`:
+Everything lives in `index.html`:
 
-| Array | Section |
-|---|---|
-| `LINKS` | Social links (defaults; users can override in-browser) |
-| `FOCUS` | 02 — Technical Focus |
-| `SERV`  | 04 — Services |
-| `AI`    | 05 — Innovation |
-| `MARQ`  | Scrolling marquee terms |
+- **Text & sections** — plain markup, edit in place.
+- **Skill / service icons** — the `IC` map (stroke icons) at the top of the
+  `<script>`; cards reference them with `data-ic="name"`.
+- **Social links** — the `LINKS` array (+ `SI` icon map). `copy:"handle"` makes a
+  card copy the handle instead of navigating.
+- **Marquee terms / typed roles** — the `MARQ` and `TYPE` arrays.
 
-The Experience timeline (03) is plain markup — edit it directly in the HTML.
+No translation layer, no gate, no admin panel — the page is intentionally a
+single static document.
 
-### Translations
-1. Edit `i18n/dict.py` — add `"English string": ("عربي", "Français"),`
-2. Run `python3 build.py` (it regenerates `dict.js` and re-embeds it).
-
-Names, brands and technical tokens (pfSense, VLAN, Instagram, `Adem Ferrah`, …)
-are deliberately **never** translated — they're protected by a `KEEP` regex in
-the i18n engine.
-
-### Rebuilding after any change
+### Rebuilding the standalone file
 
 ```bash
 python3 build.py
@@ -83,92 +66,42 @@ Then hard-refresh the browser: **Ctrl+Shift+R**.
 
 ---
 
-## Admin panel
+## Deploy
 
-Add, edit, reorder and remove links, and change the profile picture, without
-touching code.
+**GitHub Pages** — Settings → Pages → Source: `main`, folder `/ (root)`.
+Uses `index.html` + `assets/` automatically.
 
-- **Open:** the "Manage links" button in the footer, or `Ctrl+Shift+L`
-- **Default password:** `onyx2026`
+**Netlify** — drag the folder in, or connect the repo. No build command,
+publish directory `.`. `_headers` gives repeat visitors a year of asset caching.
 
-Change it from inside the panel. The password is stored as a SHA-256 hash and
-gates **link editing only** — never access to the site itself.
+**Single file** — upload `Onyx-website.html` on its own and rename it to
+`index.html`. Every image is embedded as Base64, so nothing can break from a
+missing file.
 
-### Publishing your changes
-
-Edits in the panel are saved to `localStorage` by default, which is **private to
-that one browser**. There are two ways to make them visible to everyone.
-
-#### Option 1 — Cloud sync (automatic, recommended)
-
-Set this up once and every future edit reaches all visitors by itself — no file
-uploads, works from your phone.
-
-1. Create a free project at [supabase.com](https://supabase.com).
-2. Open **SQL Editor → New query**, paste all of
-   [`supabase-setup.sql`](supabase-setup.sql), press **RUN**.
-   (Change the password on the `insert into private_admin` line first.)
-3. Go to **Settings → API** and copy the **Project URL** and the **anon public
-   key**.
-4. On your site: admin panel → **Cloud sync** → paste both plus your password →
-   **Connect & sync**.
-5. It hands you one line like
-   `var CLOUD={url:'https://xxxx.supabase.co',key:'eyJ...'};`
-   Paste it into `index.html` (replacing the empty `var CLOUD=...`) and upload
-   the file **once**.
-
-Done. From then on: open the panel anywhere, enter your password, edit — and
-everyone sees it within seconds.
-
-> **Is the anon key safe in public HTML?** Yes — it is designed to be public.
-> The database policy only accepts a write when the request carries your admin
-> password, which is stored in a table the anon key cannot read. A visitor
-> sending a forged write gets `403`. This is verified by an automated test.
-
-#### Option 2 — site.json (manual, no accounts)
-
-1. Edit in the admin panel.
-2. Click **Publish (site.json)** — a file downloads.
-3. Upload it next to `index.html`.
-
-**Priority order:**
-
-```
-Supabase cloud   (if configured — everyone, instantly)
-   ↓
-site.json        (if uploaded — everyone, after upload)
-   ↓
-localStorage     (your browser only — private preview)
-   ↓
-LINKS defaults   (built into index.html)
-```
-
-Nothing configured? The site quietly uses the defaults — no errors.
-
-> Both options need **http/https**. Opening the file straight from disk
-> (`file://`) skips the network fetch because browsers block it.
+---
 
 ## Features
 
-- Full-screen gate on every load (deliberately not persisted — refresh re-locks)
-- Pixel-font `ADEM FERRAH` wordmark rendered as inline SVG in three places
-- Sticky pill navigation with a sliding indicator, driven by scroll position
-- Trilingual EN / FR / AR with automatic RTL layout flip
-- Graduation project section with an inline SVG network topology diagram
-- Gmail-style compose form (opens Gmail pre-filled, `mailto:` fallback)
-- Password-gated admin panel for links and profile picture
+- Sticky pill navigation with sliding indicator, driven by scroll position
+- Scrollspy + IntersectionObserver reveal animations (staggered, GPU-friendly)
+- Tabbed skills and experience panels (ARIA tablist semantics)
+- Typing effect for the hero role line
+- Animated grade dial on the featured project (SVG stroke-dashoffset)
+- Gmail-style compose form (opens the mail app pre-filled, inline validation)
+- Clipboard helpers with execCommand fallback
+- Full-screen ambient background (blurred image + vignette + grain)
 - Respects `prefers-reduced-motion`
 
 ---
 
 ## Performance notes
 
-Built to stay cheap under load: no frameworks, no fonts fetched over the
-network, no analytics, no third-party requests. The page is fully static and
-CDN-cacheable, so concurrent traffic costs essentially nothing.
+No frameworks, no fonts fetched over the network, no analytics, no third-party
+requests. The page is fully static and CDN-cacheable, so concurrent traffic
+costs essentially nothing.
 
 Animations are restricted to `transform` and `opacity` (GPU-composited), the
-scroll spy is throttled to one `requestAnimationFrame` per frame, and the nav
+scrollspy is throttled to one `requestAnimationFrame` per frame, and the nav
 uses `contain: layout paint` to limit reflow scope.
 
 ---
