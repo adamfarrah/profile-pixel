@@ -83,7 +83,15 @@ missing file.
 ## Features
 
 - Sticky pill navigation with sliding indicator, driven by scroll position
-- Scrollspy + IntersectionObserver reveal animations (staggered, GPU-friendly)
+- Load-in sequence: nav links drop in staggered, hero elements rise in order,
+  avatar card pops (framer-motion-style entrance, pure CSS keyframes)
+- Section headers: eyebrow rule grows, titles reveal word-by-word through a
+  mask, ghost icon scales in, soft radial glow pool behind the heading
+- Staggered card reveals via IntersectionObserver (`--d` per-card delay)
+- Scroll-linked timeline: cards drift sideways and fade as they leave the
+  viewport, rail dots pop in (reference-style scroll parallax)
+- GNS3 topology diagram draws its own links (stroke-dashoffset) and staggers
+  its nodes when the featured project reveals
 - Tabbed skills and experience panels (ARIA tablist semantics)
 - Typing effect for the hero role line
 - Animated grade dial on the featured project (SVG stroke-dashoffset)
