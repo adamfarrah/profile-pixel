@@ -30,7 +30,7 @@ gradient accents.
 | Section | Content |
 |---|---|
 | Nav | Sticky blurred bar, pixel wordmark brand, pill links with sliding glider + scrollspy, "Hire me" CTA, burger menu on mobile. |
-| Hero | "Hi, my name is" → pixel wordmark, typed rotating role, chips, CTAs, socials; avatar stage with breathing halo, rotating light ring and floating clover. |
+| Hero | "Hi, my name is" → pixel wordmark, typed rotating role, chips, CTAs, socials; framed avatar card with outline ring and status pill. |
 | Marquee | Infinite scrolling strip of discipline keywords. |
 | 01 About | Bio, stats grid (24/7, 7+, 16/20, 100%), ID card with location / degree / focus. |
 | 02 Skills | Tabbed categories (Networking · Security · Systems & Tools · Web & AI), icon cards. |
@@ -89,7 +89,8 @@ missing file.
 - Animated grade dial on the featured project (SVG stroke-dashoffset)
 - Gmail-style compose form (opens the mail app pre-filled, inline validation)
 - Clipboard helpers with execCommand fallback
-- Full-screen ambient background (blurred image + vignette + grain)
+- Flat fixed background with a masked dot grid and two soft radial glows
+  (reference-style — no blurred imagery, no grain)
 - Respects `prefers-reduced-motion`
 
 ---
