@@ -7,6 +7,10 @@ Zero frameworks, zero build step, zero runtime dependencies. Plain HTML, CSS and
 vanilla JavaScript in a single document. Trilingual (EN / FR / AR) with full RTL
 support.
 
+Designed in the Swiss / International Typographic Style: modular grid on paper,
+hairline rules, oversized Helvetica-type headings, sharp corners, and the site's
+own imagery (green abstract, pixel clover, koi, portrait) as structural elements.
+
 ---
 
 ## Repository layout
@@ -150,8 +154,9 @@ Nothing configured? The site quietly uses the defaults — no errors.
 
 ## Features
 
-- Full-screen gate on every load (deliberately not persisted — refresh re-locks)
-- Pixel-font `ADEM FERRAH` wordmark rendered as inline SVG in three places
+- Full-screen poster gate on every load (deliberately not persisted — refresh re-locks)
+- Swiss / International Typographic Style: strict grid, flat ink, one green accent
+- `ADEM FERRAH` set in oversized grotesk type on the gate and hero wordmark
 - Sticky pill navigation with a sliding indicator, driven by scroll position
 - Trilingual EN / FR / AR with automatic RTL layout flip
 - Graduation project section with an inline SVG network topology diagram
