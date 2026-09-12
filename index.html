@@ -34,7 +34,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--navh) + 14px)}
-body{margin:0;background:var(--paper);color:var(--ink);overflow-x:hidden;
+body{margin:0;background:#253248;color:var(--ink);overflow-x:hidden;
   font-family:var(--sans);font-size:var(--t-body);line-height:1.7;font-weight:400;
   letter-spacing:-.004em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility}
@@ -53,13 +53,9 @@ button{font-family:inherit}
   font-family:var(--mono)}
 
 /* ---------- fixed paper grid ---------- */
-.bg{position:fixed;inset:0;z-index:-2;background:var(--paper);
-  background-image:
-    linear-gradient(to right,rgba(18,20,17,.045) 1px,transparent 1px),
-    linear-gradient(to bottom,rgba(18,20,17,.045) 1px,transparent 1px);
-  background-size:56px 56px}
+.bg{position:fixed;inset:0;z-index:-2;background:#253248 url(assets/bg.jpg) center/cover no-repeat}
 .bg::after{content:"";position:absolute;inset:0;
-  background:radial-gradient(950px 480px at 88% -8%,rgba(24,138,69,.075),transparent 62%)}
+  background:linear-gradient(180deg,rgba(8,12,22,.30),rgba(8,12,22,.08) 42%,rgba(8,12,22,.32))}
 
 /* ============================================================
    GATE — full-bleed poster cover
@@ -76,7 +72,7 @@ button{font-family:inherit}
     linear-gradient(to bottom,rgba(240,239,233,.055) 1px,transparent 1px);
   background-size:72px 72px}
 .g-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(6,10,7,.78),rgba(6,10,7,.38) 42%,rgba(4,7,5,.9))}
+  background:linear-gradient(180deg,rgba(6,10,7,.55),rgba(6,10,7,.22) 42%,rgba(4,7,5,.72))}
 #card:focus-visible{outline:2.5px solid var(--acc2);outline-offset:-12px}
 #card{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;
   padding:clamp(20px,4vw,46px);color:var(--ontype)}
@@ -159,7 +155,7 @@ header.hero.navin .hero-bg{transform:scale(1)}
     linear-gradient(to bottom,rgba(240,239,233,.05) 1px,transparent 1px);
   background-size:72px 72px}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(165deg,rgba(6,10,7,.82),rgba(6,10,7,.46) 46%,rgba(4,7,5,.92))}
+  background:linear-gradient(165deg,rgba(6,10,7,.60),rgba(6,10,7,.26) 46%,rgba(4,7,5,.80))}
 .hero .inner{position:relative;z-index:1;width:100%;max-width:1340px;margin:0 auto;
   padding:calc(var(--navh) + clamp(48px,9vh,110px)) clamp(20px,5vw,56px) clamp(64px,9vh,96px);
   display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);
@@ -233,8 +229,9 @@ header.hero.navin .hero-a{animation:heroIn .85s cubic-bezier(.2,.7,.2,1) both;an
 /* ============================================================
    SECTIONS
    ============================================================ */
-section{border-top:2px solid var(--ink)}
-.wrap{max-width:1180px;margin:0 auto;padding:clamp(70px,9.5vw,124px) clamp(20px,5vw,56px)}
+section{padding:clamp(16px,2.6vw,34px) clamp(12px,2.6vw,32px)}
+.wrap{max-width:1180px;margin:0 auto;background:rgba(240,239,233,.96);
+  border:2px solid var(--ink);padding:clamp(54px,7.5vw,100px) clamp(22px,4.6vw,54px)}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:var(--t-eyebrow);letter-spacing:.3em;
   text-transform:uppercase;color:var(--ink);margin:0 0 clamp(20px,3.4vw,34px)}
 .eyebrow::before{content:"";width:11px;height:11px;background:var(--acc);flex:none}

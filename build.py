@@ -6,6 +6,7 @@ uri={k:'data:%s;base64,%s'%(mime[os.path.splitext(f)[1]],base64.b64encode(open(f
 s=s.replace('<link rel="preload" as="image" href="assets/pfp.png">\n','')
 s=s.replace('<link rel="icon" id="favi" href="assets/pfp.png">','<link rel="icon" id="favi" href="data:,">')
 s=s.replace('<meta property="og:image" content="assets/koi.jpg">','')
+s=s.replace('background:#253248 url(assets/bg.jpg) center/cover no-repeat}','background:var(--bgimg)}')
 s=s.replace('background:url(assets/bg.jpg) center/cover no-repeat;','background:var(--bgimg) center/cover no-repeat;')
 s=s.replace('src="assets/pfp.png"','src="data:," data-img="PFP"')
 s=s.replace('src="assets/clover.png"','src="data:," data-img="CLOVER"')

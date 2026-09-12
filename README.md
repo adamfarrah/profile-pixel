@@ -7,9 +7,10 @@ Zero frameworks, zero build step, zero runtime dependencies. Plain HTML, CSS and
 vanilla JavaScript in a single document. Trilingual (EN / FR / AR) with full RTL
 support.
 
-Designed in the Swiss / International Typographic Style: modular grid on paper,
-hairline rules, oversized Helvetica-type headings, sharp corners, and the site's
-own imagery (green abstract, pixel clover, koi, portrait) as structural elements.
+Designed in the Swiss / International Typographic Style: hairline rules, oversized
+Helvetica-type headings, sharp corners, and the site's own imagery (blue plaid
+abstract, pixel clover, koi, portrait) as structural elements. Content sections
+sit as paper plates floating over the fixed plaid background.
 
 ---
 
